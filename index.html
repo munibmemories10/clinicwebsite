@@ -9,12 +9,33 @@
 <body>
 <main class="card">
   <div class="badge">APK DISTRIBUTION</div>
-  <h1 id="appName">Loading…</h1>
-  <p class="subtitle">Download the latest available Android application.</p>
-  <section id="release" class="release hidden">
-    <div><span>Version</span><strong id="version"></strong></div>
-    <div><span>Released</span><strong id="releasedAt"></strong></div>
-    <a id="download" class="button" href="#" download>Download APK</a>
+<h1 id="appName">Loading...</h1>
+
+<section id="release" class="release hidden">
+
+  <div>
+    <span>Version</span>
+    <strong id="version"></strong>
+  </div>
+
+  <div>
+    <span>Released</span>
+    <strong id="releasedAt"></strong>
+  </div>
+
+  <a
+    id="download"
+    class="button"
+    href="#"
+  >
+    Download APK
+  </a>
+
+</section>
+
+<p id="status" class="status">
+  Checking for the latest release...
+</p>
   </section>
   <p id="status" class="status">Checking for the latest release…</p>
   <a class="admin-link" href="admin.html">Admin</a>
