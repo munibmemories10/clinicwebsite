@@ -1,5 +1,7 @@
-const supabase = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_KEY);
-
+const supabaseClient = window.supabase.createClient(
+  window.SUPABASE_URL,
+  window.SUPABASE_KEY
+);
 async function loadLatest() {
   const { data, error } = await supabase
     .from("latest_app")
