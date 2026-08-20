@@ -1,30 +1,110 @@
-<form id="uploadForm">
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>APK Admin</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 
-  <div class="app-name">
-    <span>App Name</span>
-    <strong>Clinic App</strong>
-  </div>
+<body>
 
-  <input
-    id="versionInput"
-    type="text"
-    placeholder="Version, e.g. 1.2.0"
-    required
-  >
+<main class="card">
 
-  <input
-    id="apkInput"
-    type="file"
-    accept=".apk"
-    required
-  >
+  <!-- LOGIN -->
+  <section id="loginSection">
 
-  <button
-    id="publishButton"
-    class="button"
-    type="submit"
-  >
-    Upload & Publish
-  </button>
+    <div class="badge">ADMIN ACCESS</div>
 
-</form>
+    <h1>🔒 Admin Login</h1>
+
+    <p class="subtitle">
+      Enter your password to manage APK releases.
+    </p>
+
+    <form id="loginForm">
+
+      <input
+        id="password"
+        type="password"
+        placeholder="Enter admin password"
+        required
+      >
+
+      <button class="button" type="submit">
+        Login
+      </button>
+
+    </form>
+
+  </section>
+
+
+  <!-- UPLOAD -->
+  <section id="uploadSection" class="hidden">
+
+    <div class="badge">ADMIN PANEL</div>
+
+    <h1>Publish an APK</h1>
+
+    <p class="subtitle">
+      Upload a new APK version.
+    </p>
+
+    <form id="uploadForm">
+
+      <input
+        id="nameInput"
+        type="text"
+        placeholder="App name"
+        required
+      >
+
+      <input
+        id="versionInput"
+        type="text"
+        placeholder="Version, e.g. 1.2.0"
+        required
+      >
+
+      <input
+        id="apkInput"
+        type="file"
+        accept=".apk"
+        required
+      >
+
+      <button
+        id="publishButton"
+        class="button"
+        type="submit"
+      >
+        Upload & Publish
+      </button>
+
+    </form>
+
+    <button
+      id="logoutButton"
+      class="text-button"
+    >
+      Logout
+    </button>
+
+  </section>
+
+
+  <p id="message" class="status"></p>
+
+  <a class="admin-link" href="index.html">
+    ← Public page
+  </a>
+
+</main>
+
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="admin.js"></script>
+
+</body>
+</html>
