@@ -1,5 +1,7 @@
-const supabase = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_KEY);
-
+const supabaseClient = window.supabase.createClient(
+  window.SUPABASE_URL,
+  window.SUPABASE_KEY
+);
 const loginSection = document.getElementById("loginSection");
 const uploadSection = document.getElementById("uploadSection");
 const message = document.getElementById("message");
