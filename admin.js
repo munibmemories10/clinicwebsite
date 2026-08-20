@@ -14,7 +14,7 @@ function showMessage(text) {
 }
 
 
-// Check if already logged in during this browser session
+// Check if already logged in
 if (sessionStorage.getItem("apkAdminLoggedIn") === "true") {
   loginSection.classList.add("hidden");
   uploadSection.classList.remove("hidden");
@@ -22,9 +22,9 @@ if (sessionStorage.getItem("apkAdminLoggedIn") === "true") {
 
 
 // LOGIN
-document
-  .getElementById("loginForm")
-  .addEventListener("submit", function (e) {
+document.getElementById("loginForm").addEventListener(
+  "submit",
+  function (e) {
 
     e.preventDefault();
 
@@ -39,10 +39,9 @@ document
       );
 
       loginSection.classList.add("hidden");
-
       uploadSection.classList.remove("hidden");
 
-      showMessage("Logged in.");
+      showMessage("Logged in successfully.");
 
     } else {
 
@@ -50,13 +49,14 @@ document
 
     }
 
-  });
+  }
+);
 
 
 // UPLOAD APK
-document
-  .getElementById("uploadForm")
-  .addEventListener("submit", async function (e) {
+document.getElementById("uploadForm").addEventListener(
+  "submit",
+  async function (e) {
 
     e.preventDefault();
 
@@ -69,47 +69,34 @@ document
     const file =
       document.getElementById("apkInput").files[0];
 
-
     if (!file) {
-
       showMessage("Please select an APK file.");
-
       return;
-
     }
-
 
     if (!file.name.toLowerCase().endsWith(".apk")) {
-
       showMessage("Please select a valid APK file.");
-
       return;
-
     }
-
 
     const button =
       document.getElementById("publishButton");
 
     button.disabled = true;
 
-    showMessage("Uploading APK...");
-
-
     try {
+
+      showMessage("Uploading APK...");
 
       const safeVersion =
         version.replace(/[^a-zA-Z0-9._-]/g, "-");
-
 
       const filePath =
         `releases/${Date.now()}-${safeVersion}.apk`;
 
 
-      // Upload APK to Supabase Storage
       const { error: uploadError } =
-        await supabaseClient
-          .storage
+        await supabaseClient.storage
           .from("apks")
           .upload(
             filePath,
@@ -122,18 +109,14 @@ document
             }
           );
 
-
       if (uploadError) {
-
         throw uploadError;
-
       }
 
 
       showMessage("Publishing version...");
 
 
-      // Update latest version
       const { error: dbError } =
         await supabaseClient
           .from("latest_app")
@@ -143,19 +126,15 @@ document
               app_name: appName,
               version: version,
               file_path: filePath,
-              published_at:
-                new Date().toISOString()
+              published_at: new Date().toISOString()
             },
             {
               onConflict: "id"
             }
           );
 
-
       if (dbError) {
-
         throw dbError;
-
       }
 
 
@@ -163,11 +142,9 @@ document
         .getElementById("uploadForm")
         .reset();
 
-
       showMessage(
         `Successfully published ${appName} version ${version}!`
       );
-
 
     } catch (error) {
 
@@ -183,26 +160,23 @@ document
 
     }
 
-  });
+  }
+);
 
 
 // LOGOUT
-document
-  .getElementById("logoutButton")
-  .addEventListener("click", function () {
+document.getElementById("logoutButton").addEventListener(
+  "click",
+  function () {
 
-    sessionStorage.removeItem(
-      "apkAdminLoggedIn"
-    );
+    sessionStorage.removeItem("apkAdminLoggedIn");
 
     uploadSection.classList.add("hidden");
-
     loginSection.classList.remove("hidden");
 
-    document
-      .getElementById("password")
-      .value = "";
+    document.getElementById("password").value = "";
 
     showMessage("Logged out.");
 
-  });
+  }
+);
