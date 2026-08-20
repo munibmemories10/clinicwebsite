@@ -60,8 +60,7 @@ document.getElementById("uploadForm").addEventListener(
 
     e.preventDefault();
 
-    const appName =
-      document.getElementById("nameInput").value.trim();
+    const appName = "Clinic App";
 
     const version =
       document.getElementById("versionInput").value.trim();
