@@ -1,41 +1,110 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>APK Admin</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>APK Admin</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
 <main class="card">
-  <div class="badge">ADMIN</div>
-  <h1>Publish an APK</h1>
 
+  <!-- LOGIN -->
   <section id="loginSection">
-    <p class="subtitle">Sign in with your Supabase admin account.</p>
+
+    <div class="badge">ADMIN ACCESS</div>
+
+    <h1>🔒 Admin Login</h1>
+
+    <p class="subtitle">
+      Enter your password to manage APK releases.
+    </p>
+
     <form id="loginForm">
-      <input id="email" type="email" placeholder="Email" required>
-      <input id="password" type="password" placeholder="Password" required>
-      <button class="button" type="submit">Sign in</button>
+
+      <input
+        id="password"
+        type="password"
+        placeholder="Enter admin password"
+        required
+      >
+
+      <button class="button" type="submit">
+        Login
+      </button>
+
     </form>
+
   </section>
 
+
+  <!-- UPLOAD -->
   <section id="uploadSection" class="hidden">
-    <p class="subtitle">Upload a new version. It will become the public latest release.</p>
+
+    <div class="badge">ADMIN PANEL</div>
+
+    <h1>Publish an APK</h1>
+
+    <p class="subtitle">
+      Upload a new APK version.
+    </p>
+
     <form id="uploadForm">
-      <input id="nameInput" type="text" placeholder="App name" required>
-      <input id="versionInput" type="text" placeholder="Version, e.g. 1.2.0" required>
-      <input id="apkInput" type="file" accept=".apk,application/vnd.android.package-archive" required>
-      <button id="publishButton" class="button" type="submit">Upload & Publish</button>
+
+      <input
+        id="nameInput"
+        type="text"
+        placeholder="App name"
+        required
+      >
+
+      <input
+        id="versionInput"
+        type="text"
+        placeholder="Version, e.g. 1.2.0"
+        required
+      >
+
+      <input
+        id="apkInput"
+        type="file"
+        accept=".apk"
+        required
+      >
+
+      <button
+        id="publishButton"
+        class="button"
+        type="submit"
+      >
+        Upload & Publish
+      </button>
+
     </form>
-    <button id="logoutButton" class="text-button">Sign out</button>
+
+    <button
+      id="logoutButton"
+      class="text-button"
+    >
+      Logout
+    </button>
+
   </section>
+
 
   <p id="message" class="status"></p>
-  <a class="admin-link" href="index.html">← Public page</a>
+
+  <a class="admin-link" href="index.html">
+    ← Public page
+  </a>
+
 </main>
+
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 <script src="config.js"></script>
 <script src="admin.js"></script>
+
 </body>
 </html>
